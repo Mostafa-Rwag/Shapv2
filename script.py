@@ -20,9 +20,13 @@ model.fit(X, y)
 explainer = shap.TreeExplainer(model)
 shap_values = explainer.shap_values(X)
 
-# حفظ الرسم البياني كـ HTML و PNG
-shap.summary_plot(shap_values, X, show=False)
-shap.save_html("shap_summary_plot.html")  # حفظ الرسم كـ HTML
+# إنشاء الرسم البياني باستخدام SHAP
+shap_plot = shap.summary_plot(shap_values, X, show=False)
+
+# حفظ الرسم البياني كـ HTML
+shap.save_html("shap_summary_plot.html", shap_plot)  # تمرير الرسم البياني إلى الدالة
+
+# حفظ الرسم كـ PNG باستخدام matplotlib
 plt.savefig("shap_summary_plot.png")  # حفظ الرسم كـ PNG
 
 @app.route('/')
