@@ -23,12 +23,13 @@ shap_values = explainer.shap_values(X)
 # إنشاء الرسم البياني باستخدام SHAP
 shap.summary_plot(shap_values, X, show=False)
 
-# حفظ الرسم البياني كـ HTML
-shap_plot = shap.plots._matplotlib.summary_plot(shap_values, X, show=False)  # الحصول على الرسم البياني
-shap.save_html("shap_summary_plot.html", shap_plot)  # حفظ الرسم البياني كـ HTML
-
-# حفظ الرسم كـ PNG باستخدام matplotlib
+# حفظ الرسم البياني كـ PNG باستخدام matplotlib
 plt.savefig("shap_summary_plot.png")  # حفظ الرسم كـ PNG
+
+# حفظ الرسم البياني كـ HTML باستخدام SHAP مباشرةً
+shap.initjs()
+html_plot = shap.force_plot(explainer.expected_value[0], shap_values[0], X[0,:], matplotlib=True)
+shap.save_html("shap_summary_plot.html", html_plot)  # حفظ الرسم كـ HTML
 
 @app.route('/')
 def index():
