@@ -9,7 +9,7 @@ COPY . /app
 
 # تثبيت المكتبات اللازمة
 RUN pip install --upgrade pip
-RUN pip install shap numpy scikit-learn matplotlib flask
+RUN pip install shap numpy scikit-learn matplotlib flask plot
 
 # نسخ السكربت الخاص بك (تأكد من وجود سكربت Python داخل المجلد الحالي)
 COPY script.py /app/script.py
