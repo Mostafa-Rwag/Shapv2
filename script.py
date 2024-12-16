@@ -21,10 +21,11 @@ explainer = shap.TreeExplainer(model)
 shap_values = explainer.shap_values(X)
 
 # إنشاء الرسم البياني باستخدام SHAP
-shap_plot = shap.summary_plot(shap_values, X, show=False)
+shap.summary_plot(shap_values, X, show=False)
 
 # حفظ الرسم البياني كـ HTML
-shap.save_html("shap_summary_plot.html", shap_plot)  # تمرير الرسم البياني إلى الدالة
+shap_plot = shap.plots._matplotlib.summary_plot(shap_values, X, show=False)  # الحصول على الرسم البياني
+shap.save_html("shap_summary_plot.html", shap_plot)  # حفظ الرسم البياني كـ HTML
 
 # حفظ الرسم كـ PNG باستخدام matplotlib
 plt.savefig("shap_summary_plot.png")  # حفظ الرسم كـ PNG
